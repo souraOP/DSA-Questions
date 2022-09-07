@@ -1,5 +1,5 @@
 def WordCount(search_word):
-    f = open("/home/linuxmint/Desktop/agatha.txt", 'r')
+    f = open("your-filepath/agatha.txt", 'r')
     count = 0
     s = f.read()
     x = s.split()
