@@ -1,5 +1,5 @@
 def WordCount(search_word):
-    f = open("your-filepath/agatha.txt", 'r')
+    f = open("your-filepath/"your-textfile".txt", 'r')
     count = 0
     s = f.read()
     x = s.split()
