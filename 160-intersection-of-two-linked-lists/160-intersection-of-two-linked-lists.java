@@ -16,13 +16,11 @@ public class Solution {
         ListNode ptr2;
         int l1 = nodeLength(headA);
         int l2 = nodeLength(headB);
-        int node_difference = 0;
+        int node_difference = Math.abs(l1 -l2);
         if(l1 > l2){
-            node_difference = l1 - l2;
             ptr1 = headA;
             ptr2 = headB;
         } else {
-            node_difference = l2 - l1;
             ptr1 = headB;
             ptr2 = headA;
         }
