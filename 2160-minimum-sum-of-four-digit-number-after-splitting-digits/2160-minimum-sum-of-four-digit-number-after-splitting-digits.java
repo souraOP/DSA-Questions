@@ -1,15 +1,9 @@
 class Solution {
     public int minimumSum(int num) {
-        int[] arr = new int[4];
-        int count = 0;
-        while(num > 0){
-            arr[count++] = num % 10;
-            num = num / 10;
-        }
+        int[] arr = {num%10, (num/10)%10, (num/100)%10, (num/1000)%10};
         Arrays.sort(arr);
-        int new1 = (arr[0] * 10 + arr[2]);
-        int new2 = (arr[1] * 10 + arr[3]);
-        return new1 + new2;
+        return (arr[0]*10 + arr[2]) + (arr[1]*10 + arr[3]);
+        
     }
     // public void bubbleSort(int[] arr){
     //     int n = arr.length;
