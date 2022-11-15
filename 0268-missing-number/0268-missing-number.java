@@ -1,11 +1,22 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int xy = nums.length;
-        int sss = (xy*(xy+1))/2;
-        int curr = 0;
-        for(int i = 0; i< xy; i++){
-            curr += nums[i];
+        int len = nums.length;
+        if (len == 0) {
+            return 0;
         }
-        return sss - curr;
+
+        Arrays.sort(nums);
+        int start = 0;
+        int end = len;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] > mid) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+
+        return start;
     }
 }
