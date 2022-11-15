@@ -1,22 +1,9 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int len = nums.length;
-        if (len == 0) {
-            return 0;
+        int xc = 0, j = 0;
+        for(; j< nums.length; j++){
+            xc = xc + j - nums[j];
         }
-
-        Arrays.sort(nums);
-        int start = 0;
-        int end = len;
-        while (start < end) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] > mid) {
-                end = mid;
-            } else {
-                start = mid + 1;
-            }
-        }
-
-        return start;
+        return (xc+j);
     }
 }
