@@ -22,7 +22,7 @@ class Solution {
     
     public String numberToWords(int num) {
         if (num == 0) return "Zero";
-        return bhenchod(num);
+        return bhenchod(num).trim();
     }
     
     
