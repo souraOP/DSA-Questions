@@ -10,25 +10,21 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists.length == 0){
-            return null;
+        //Using Priority Queue
+        PriorityQueue<Integer> resultList = new PriorityQueue<>();
+        for(ListNode heads: lists){
+            while(heads != null){
+                resultList.add(heads.val);
+                heads = heads.next;
+            }
         }
-        ListNode merged = null;
-        for(ListNode head: lists){
-            merged = mergeLists(merged, head);
+        ListNode ptr = new ListNode(0);
+        ListNode curr = ptr;
+        while(!resultList.isEmpty()){
+            ListNode ankita = new ListNode(resultList.poll());
+            ptr.next = ankita;
+            ptr = ptr.next;
         }
-        return merged;
-        
-    }
-    public ListNode mergeLists(ListNode ptr1, ListNode ptr2){
-        if(ptr1 == null) return ptr2;
-        if(ptr2 == null) return ptr1;
-        if(ptr1.val < ptr2.val){
-            ptr1.next = mergeLists(ptr1.next, ptr2);
-            return ptr1;
-        } else {
-            ptr2.next = mergeLists(ptr1, ptr2.next);
-            return ptr2;
-        }
+        return curr.next;
     }
 }
