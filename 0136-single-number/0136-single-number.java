@@ -16,20 +16,29 @@ class Solution {
 //         return -1;
         
         // Using hashmap
-        HashMap<Integer, Integer> map = new HashMap<>();
+//         HashMap<Integer, Integer> map = new HashMap<>();
         
-        //putting everything inside the hashmap
-        for(int i = 0; i < nums.length; i++){
-            //loop through and put the element alongwith their frequency
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
-        for(Map.Entry<Integer, Integer> it: map.entrySet()) {
-            if(it.getValue() == 1) {
-                return it.getKey();
-            }
-        }
+//         //putting everything inside the hashmap
+//         for(int i = 0; i < nums.length; i++){
+//             //loop through and put the element alongwith their frequency
+//             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+//         }
+//         for(Map.Entry<Integer, Integer> it: map.entrySet()) {
+//             if(it.getValue() == 1) {
+//                 return it.getKey();
+//             }
+//         }
         
-        return -1;
+//         return -1;
+        
+        // cmon man ... using xor
+        int x= 0;
+        for(int s: nums){
+            x = x ^ s;
+            
+        }
+        return x;
+        
         
         
     }
