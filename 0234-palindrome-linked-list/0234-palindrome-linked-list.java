@@ -9,16 +9,24 @@
  * }
  */
 class Solution {
-    ListNode ref;
     public boolean isPalindrome(ListNode head) {
-        ref= head;
-        return check(ref);
-    }
-    public boolean check(ListNode node){
-        if(node == null) return true;
-        boolean answerFinal = check(node.next);
-        boolean checkPalindrome = (ref.val == node.val)? true : false; 
-        ref = ref.next;
-        return answerFinal && checkPalindrome;
+       if(head == null){
+            return false;
+        }
+        Stack<Integer> st = new Stack<>();
+        ListNode temp = head;
+        while(temp != null){
+            st.push(temp.val);
+            temp = temp.next;
+        }
+        temp = head;
+        while(temp != null){
+            if(temp.val != st.peek()){
+                return false;
+            }
+            st.pop();
+            temp = temp.next;
+        }
+        return true; 
     }
 }
