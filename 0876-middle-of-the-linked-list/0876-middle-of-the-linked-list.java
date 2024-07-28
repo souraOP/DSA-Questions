@@ -10,18 +10,23 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
+            if(head == null){
+            return null;
+        }
+    
+        ListNode temp = head;
         int count = 0;
-        ListNode curr = head;
-        while(curr != null){
-            curr = curr.next;
+        while(temp != null){
+            temp = temp.next;
             count++;
         }
-        int mid = count/2;
-        curr = head;
-        for(int i = 0; i < mid; i++){
-            curr = curr.next;
+        temp = head;
+        // divide the count by math.ceil
+        int pos = (int)Math.ceil(count / 2);
+        for(int i = 0; i < pos; i++){
+            temp = temp.next;
             
         }
-        return curr;
+        return temp;
     }
 }
