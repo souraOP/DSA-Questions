@@ -10,22 +10,30 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode start = new ListNode();
-        start.next = head;
-        ListNode left = start;
-        ListNode right = start;
-        
-        for(int i = 1; i <= n; ++i){
-            right = right.next;
+        if(head == null){
+            return null;
         }
-        
-        while(right.next != null){
-            right = right.next;
-            left = left.next;
+        // getting the total length of the linkedlist using a count variable
+        int count =0;
+        ListNode temp = head;
+        while(temp != null){
+            count++;
+            temp = temp.next;
         }
-        
-        // deleting the nth node by connecting the previous node "left" with left.next.next
-        left.next = left.next.next;
-        return start.next;
+        // if count is equal to the n that means it wants to delete the head
+        if(count == n){
+            ListNode newHead = head.next;
+            head = null;
+            return newHead;
+        }
+        int res = count - n;
+        temp = head;
+        for(int i = 1; i < res; i++){
+            temp = temp.next;
+        }
+        ListNode deleteNode = temp.next;
+        temp.next = temp.next.next;
+        deleteNode = null;
+        return head;
     }
 }
