@@ -44,5 +44,13 @@ class Solution {
         
         return head;
 
+
+        /* 2nd Approach
+            Using QuickSort to perform the sorting
+            Optimizing the code
+        */
+
+        // return the head and tail in the quicksort function
     }
+
 }
