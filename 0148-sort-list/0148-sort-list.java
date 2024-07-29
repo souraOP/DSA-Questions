@@ -15,6 +15,7 @@ class Solution {
         // 2. Sort those array
         // 3. again convert them back to a new linkedlist
         
+        // if head is null, return null
         if(head == null){
             return null;
         }
