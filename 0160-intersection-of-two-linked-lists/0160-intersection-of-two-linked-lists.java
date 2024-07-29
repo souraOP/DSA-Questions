@@ -11,15 +11,13 @@
  */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode temp2 = headB;
-
-        while(temp2 != null){
+        while(headB != null){
             ListNode temp1 = headA;
             while(temp1 != null){
-                if(temp1 == temp2) return temp2;
+                if(temp1 == headB) return headB;
                 temp1= temp1.next;
             }
-            temp2 = temp2.next;
+            headB = headB.next;
         }
         return null;
     }
