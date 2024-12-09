@@ -1,26 +1,62 @@
+class Pair {
+    int row;
+    int col;
+    public Pair(int row, int col){
+        this.row = row;
+        this.col = col;
+    }
+}
+
 class Solution {
     public int numEnclaves(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if ((i == 0 || j == 0 || i == m - 1 || j == n - 1) && grid[i][j] == 1) {
-                    dfs(grid, i, j);
+        int n= grid.length;
+        int m = grid[0].length;
+        Queue<Pair> q = new LinkedList<Pair>();
+        // make the visited matrix
+        boolean[][] vis = new boolean[n][m];
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                // first row, first col, last row, last col
+                if(i == 0 || j == 0 || i == n - 1 || j == m - 1){
+                    if(grid[i][j] == 1){
+                        q.add(new Pair(i, j));
+                        vis[i][j] = true;
+                    }
                 }
             }
         }
-        return Arrays.stream(grid).mapToInt(row -> Arrays.stream(row).sum()).sum();
-    }
-    
-    private void dfs(int[][] grid, int i, int j) {
-        grid[i][j] = 0;
-        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-        for (int[] direction : directions) {
-            int x = i + direction[0];
-            int y = j + direction[1];
-            if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1) {
-                dfs(grid, x, y);
+
+        // make the movements
+        int[] dRow = {-1, 0, +1, 0};
+        int[] dCol = {0, +1, 0, -1};
+
+        // do the bfs
+        while(!q.isEmpty()){
+            int r = q.peek().row;
+            int c = q.peek().col;
+            //remove from the queue
+            q.remove();
+            for(int i = 0; i < 4; i++){
+                //neighbours Rows and cols movement
+                int nRows= r + dRow[i];
+                int nCols = c + dCol[i];
+                if(nRows >= 0 && nRows < n && nCols >= 0 && nCols < m && vis[nRows][nCols] == false && grid[nRows][nCols] == 1){
+                    q.add(new Pair(nRows, nCols));
+                    vis[nRows][nCols] = true;
+                }
             }
         }
+
+        // check for only the land
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(grid[i][j]==1 && vis[i][j] != true){
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 }
