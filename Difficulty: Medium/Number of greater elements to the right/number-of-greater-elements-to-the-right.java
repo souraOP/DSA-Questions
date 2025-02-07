@@ -37,7 +37,8 @@ System.out.println("~");
 
 class Solution {
   public static int[] count_NGEs(int N, int arr[], int queries, int indices[]) {
-    // code here
+    // O(n^2) solution
+    
     int count;
     int[] ans = new int[queries];
     for(int i = 0; i < queries; i++){
@@ -53,6 +54,10 @@ class Solution {
     }
     return ans;
      
+     
+    
+    
+    
   }
 }
      
